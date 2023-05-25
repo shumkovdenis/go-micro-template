@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package account.v1;
+
+message ErrorInfo {
+  string message = 1;
+}
