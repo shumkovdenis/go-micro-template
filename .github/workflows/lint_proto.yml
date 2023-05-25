@@ -1,0 +1,20 @@
+name: Lint proto
+
+on:
+  pull_request:
+    paths:
+      - '**.proto'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-lint-action@v1
+        with:
+          input: 'proto'
+      - uses: bufbuild/buf-breaking-action@v1
+        with:
+          input: 'proto'
+          against: '${{ github.server_url }}/${{ github.repository }}.git#branch=main,ref=HEAD~1,subdir=proto'

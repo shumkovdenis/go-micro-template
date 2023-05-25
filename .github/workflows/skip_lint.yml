@@ -1,0 +1,13 @@
+name: Skip lint
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.proto'
+      - '**.go'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No lint required"'
